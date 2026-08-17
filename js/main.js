@@ -16,11 +16,6 @@ const menuBtn = document.querySelector('.menu-btn');
 const navLinks = document.querySelector('.nav-links');
 if (menuBtn) menuBtn.addEventListener('click', () => navLinks.classList.toggle('aberto'));
 
-// Animação de entrada
-const obs = new IntersectionObserver(es => {
-  es.forEach(e => { if (e.isIntersecting){ e.target.classList.add('visivel'); obs.unobserve(e.target); } });
-}, { threshold:.12 });
-document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
 // Contadores dos números
 const contadores = document.querySelectorAll('[data-contar]');
@@ -62,63 +57,3 @@ document.querySelectorAll('form[data-wpp]').forEach(f => {
     window.open('https://wa.me/' + f.dataset.wpp + '?text=' + txt, '_blank');
   });
 });
-
-/* ===== Revelação das fotos: colunas que se encaixam ===== */
-(function(){
-  const reduz = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (reduz) return;
-
-  // todo container que tenha uma foto ganha o efeito
-  const alvos = document.querySelectorAll('.visual-box, .hero, .page-hero, .foto-onda, .faixa-foto');
-
-  alvos.forEach(el => {
-    const foto = el.querySelector('img');
-    if (!foto && !el.classList.contains('faixa-foto')) return;
-
-    // o fade padrão mascarava o efeito: desliga nesse elemento
-    el.classList.remove('reveal');
-    el.classList.add('com-mosaico');
-
-    const largura = el.offsetWidth || window.innerWidth;
-    const colunas = largura > 900 ? 14 : (largura > 560 ? 9 : 6);
-    const m = document.createElement('div');
-    m.className = 'mosaico';
-    const meio = (colunas - 1) / 2;
-    for (let i = 0; i < colunas; i++){
-      const s = document.createElement('span');
-      s.style.transitionDelay = (Math.abs(i - meio) * 48 + (i % 2 ? 26 : 0)) + 'ms';
-      m.appendChild(s);
-    }
-    el.appendChild(m);
-    if (foto) foto.classList.add('foto-zoom');
-    el.__mosaico = m;
-  });
-
-  const obs = new IntersectionObserver(entradas => {
-    entradas.forEach(e => {
-      const el = e.target;
-      if (e.isIntersecting){
-        if (el.__mosaico) el.__mosaico.classList.add('aberto');
-        const foto = el.querySelector('img');
-        if (foto) foto.classList.add('pronta');
-        el.__visto = true;
-      } else if (el.__visto && e.boundingClientRect.top > 0){
-        // saiu pela parte de baixo: rearma para tocar de novo ao voltar
-        if (el.__mosaico) el.__mosaico.classList.remove('aberto');
-        const foto = el.querySelector('img');
-        if (foto) foto.classList.remove('pronta');
-        el.__visto = false;
-      }
-    });
-  }, { threshold: .18, rootMargin: '0px 0px -8% 0px' });
-
-  alvos.forEach(el => { if (el.__mosaico) obs.observe(el); });
-})();
-
-/* Cascata nos cards de cada grade */
-document.querySelectorAll('.grid-cards, .servicos-cards, .acoes-grid, .valores-grid, .unidades-grid, .contato-grid, .lista-beneficios')
-  .forEach(grade => {
-    [...grade.children].forEach((filho, i) => {
-      if (filho.classList.contains('reveal')) filho.style.transitionDelay = (i * 70) + 'ms';
-    });
-  });

@@ -399,3 +399,12 @@ img{max-width:100%;display:block}
 .foto-zoom{transform:scale(1.12);filter:saturate(.75);transition:transform 1.5s cubic-bezier(.16,1,.3,1),filter 1.2s ease}
 .foto-zoom.pronta{transform:scale(1);filter:saturate(1)}
 .faixa-foto .mosaico span{background:#04203F}
+
+/* ============================================================
+   Sem animações de rolagem: conteúdo sempre visível.
+   A única transição do site é o carrossel de imagens do topo.
+   ============================================================ */
+.reveal,.com-mosaico{opacity:1 !important;transform:none !important;transition:box-shadow .25s,border-color .25s,background .25s !important;transition-delay:0s !important}
+.mosaico{display:none !important}
+.foto-zoom,.foto-zoom.pronta{transform:none !important;filter:none !important;transition:none !important}
+.visual-box img,.page-hero .ph-bg,.foto-onda img{opacity:1}
