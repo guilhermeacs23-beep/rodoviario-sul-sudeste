@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cotação | Rodoviário Sul Sudeste</title>
+<meta name="description" content="Solicite sua cotação de frete: informe origem, destino, medidas e peso que nosso comercial retorna rapidamente.">
+<meta property="og:title" content="Cotação | Rodoviário Sul Sudeste"><meta property="og:description" content="Solicite sua cotação de frete: informe origem, destino, medidas e peso que nosso comercial retorna rapidamente."><meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.14.0/dist/tabler-icons.min.css">
+<link rel="icon" type="image/png" href="img/favicon.png"><link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="topbar">
+  <div class="container topbar-inner">
+    <div class="topbar-info">
+      <a href="tel:+553532141374"><i class="ti ti-phone"></i> (35) 3214-1374</a>
+      <a href="https://wa.me/5547988214393" target="_blank" rel="noopener" class="op"><i class="ti ti-brand-whatsapp"></i> (47) 98821-4393</a>
+      <span class="op"><i class="ti ti-mail"></i> contato@rodosulsudeste.com.br</span>
+      <span><i class="ti ti-map-pin"></i> Rod. BR-491, Km 4 — Varginha / Elói Mendes (MG)</span>
+    </div>
+    <div class="topbar-social">
+      <a href="#" aria-label="Instagram"><i class="ti ti-brand-instagram"></i></a>
+      <a href="#" aria-label="Facebook"><i class="ti ti-brand-facebook"></i></a>
+      <a href="https://wa.me/5547988214393" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="ti ti-brand-whatsapp"></i></a>
+      <a href="#" aria-label="LinkedIn"><i class="ti ti-brand-linkedin"></i></a>
+    </div>
+  </div>
+</div>
+<nav class="nav">
+  <div class="container nav-inner">
+    <a href="index.html" class="logo"><img src="img/logo.png" alt="Rodoviário Sul Sudeste — Conectando regiões, movendo o Brasil."></a>
+    <div class="nav-links">
+      <a href="index.html">Início</a>
+      <a href="sobre-nos.html">Sobre Nós</a>
+      <a href="servicos.html">Serviços</a>
+      <a href="beneficios.html">Benefícios</a>
+      <a href="area-de-atuacao.html">Atuação</a>
+      <a href="cotacao.html" class="ativo">Cotação</a>
+      <div class="submenu">
+        <a href="contato.html">Contato <i class="ti ti-chevron-down"></i></a>
+        <div class="submenu-lista">
+          <a href="contato.html">Fale Conosco</a>
+          <a href="trabalhe-conosco.html">Trabalhe Conosco</a>
+        </div>
+      </div>
+    </div>
+    <div class="nav-acoes">
+      <a href="rastreamento.html" class="btn btn-sm btn-azul">Rastreio</a>
+      <a href="cotacao.html" class="btn btn-sm btn-ciano principal">Cotação</a>
+      <button class="menu-btn" aria-label="Abrir menu"><i class="ti ti-menu-2"></i></button>
+    </div>
+  </div>
+</nav>
+<header class="page-hero com-foto">
+  <img class="ph-bg" src="img/entrega.jpg" alt="">
+  <div class="container">
+    <div class="eyebrow">Cotação</div>
+    <h1>Preencha o formulário e retornaremos sua cotação</h1>
+    <p>Informe os dados do embarque. Ao enviar, a mensagem sai pronta no WhatsApp do nosso comercial.</p>
+  </div>
+</header>
+
+<section class="secao">
+  <div class="container">
+    <form class="form form-largo reveal" data-wpp="5547988214393" data-titulo="*Pedido de cotação — site*">
+      <div class="bloco-form">
+        <h3><i class="ti ti-map-pin"></i> Origem</h3>
+        <div class="form-linha tres">
+          <div><label>CEP de origem</label><input name="CEP origem" placeholder="00000-000"></div>
+          <div><label>UF</label><input name="UF origem" required placeholder="Ex.: MG"></div>
+          <div><label>Cidade</label><input name="Cidade origem" required placeholder="Cidade de origem"></div>
+        </div>
+      </div>
+      <div class="bloco-form">
+        <h3><i class="ti ti-flag"></i> Destino</h3>
+        <div class="form-linha tres">
+          <div><label>CEP de destino</label><input name="CEP destino" placeholder="00000-000"></div>
+          <div><label>UF</label><input name="UF destino" required placeholder="Ex.: SP"></div>
+          <div><label>Cidade</label><input name="Cidade destino" required placeholder="Cidade de destino"></div>
+        </div>
+      </div>
+      <div class="bloco-form">
+        <h3><i class="ti ti-package"></i> Pedido de cotação</h3>
+        <div class="form-linha">
+          <div><label>Tipo de carga</label>
+            <select name="Tipo de carga"><option>Carga fracionada</option><option>Carga fechada</option><option>Armazenagem</option><option>Projeto logístico</option></select>
+          </div>
+          <div><label>Peso total (kg)</label><input name="Peso" placeholder="Ex.: 1200"></div>
+        </div>
+        <div class="form-linha">
+          <div><label>Valor da mercadoria (R$)</label><input name="Valor da mercadoria" placeholder="Ex.: 15.000,00"></div>
+          <div><label>Quantidade de volumes</label><input name="Volumes" placeholder="Ex.: 12"></div>
+        </div>
+      </div>
+      <div class="bloco-form">
+        <h3><i class="ti ti-ruler-measure"></i> Medidas em metros</h3>
+        <div class="form-linha tres">
+          <div><label>Altura</label><input name="Altura (m)" placeholder="0,00"></div>
+          <div><label>Largura</label><input name="Largura (m)" placeholder="0,00"></div>
+          <div><label>Comprimento</label><input name="Comprimento (m)" placeholder="0,00"></div>
+        </div>
+      </div>
+      <div class="bloco-form">
+        <h3><i class="ti ti-user"></i> Seus dados</h3>
+        <div class="form-linha">
+          <div><label>Empresa</label><input name="Empresa" required placeholder="Nome da empresa"></div>
+          <div><label>Responsável</label><input name="Responsável" required placeholder="Seu nome"></div>
+        </div>
+        <div class="form-linha">
+          <div><label>Telefone / WhatsApp</label><input name="Telefone" required placeholder="(00) 00000-0000"></div>
+          <div><label>E-mail</label><input name="E-mail" type="email" placeholder="seu@email.com.br"></div>
+        </div>
+        <div><label>Observações</label><textarea name="Observações" placeholder="Prazo desejado, frequência dos embarques, cuidados especiais..."></textarea></div>
+      </div>
+      <button class="btn btn-ciano" type="submit" style="justify-self:start">Enviar cotação <i class="ti ti-brand-whatsapp"></i></button>
+    </form>
+  </div>
+</section>
+
+<footer class="rodape">
+  <div class="container rodape-grid">
+    <div>
+      <img src="img/logo-branca.png" alt="Rodoviário Sul Sudeste">
+      <p>Rodoviário Sul Sudeste tem um único objetivo: eficiência na prestação de serviços logísticos. Nossa capacidade operacional é do tamanho da sua necessidade.</p>
+    </div>
+    <div>
+      <h4>Links rápidos</h4>
+      <a href="index.html">Início</a><a href="sobre-nos.html">Sobre Nós</a><a href="servicos.html">Serviços</a>
+      <a href="beneficios.html">Benefícios</a><a href="area-de-atuacao.html">Área de Atuação</a>
+    </div>
+    <div>
+      <h4>Atendimento</h4>
+      <a href="cotacao.html">Solicitar cotação</a><a href="rastreamento.html">Rastrear carga</a>
+      <a href="contato.html">Fale conosco</a><a href="trabalhe-conosco.html">Trabalhe conosco</a>
+    </div>
+    <div>
+      <h4>Contato</h4>
+      <a href="tel:+553532141374"><i class="ti ti-phone"></i> (35) 3214-1374</a>
+      <a href="https://wa.me/5547988214393" target="_blank" rel="noopener"><i class="ti ti-brand-whatsapp"></i> (47) 98821-4393</a>
+      <p><i class="ti ti-mail"></i> contato@rodosulsudeste.com.br</p>
+      <p><i class="ti ti-map-pin"></i> Rod. BR-491, Km 4 — Varginha / Elói Mendes (MG)</p>
+    </div>
+  </div>
+  <div class="container rodape-base">
+    <span>Copyright © 2026 Rodoviário Sul Sudeste. Todos os direitos reservados.</span>
+    <span>Conectando regiões, movendo o Brasil.</span>
+  </div>
+</footer>
+<a class="wpp-flutuante" href="https://wa.me/5547988214393?text=Ol%C3%A1!%20Vim%20pelo%20site." target="_blank" rel="noopener" aria-label="WhatsApp"><i class="ti ti-brand-whatsapp"></i></a>
+<script src="js/main.js"></script>
+</body>
+</html>
