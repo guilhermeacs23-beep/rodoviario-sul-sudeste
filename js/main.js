@@ -63,48 +63,60 @@ document.querySelectorAll('form[data-wpp]').forEach(f => {
   });
 });
 
-/* ===== Revelação das fotos em colunas (mosaico) ===== */
+/* ===== Revelação das fotos: colunas que se encaixam ===== */
 (function(){
-  const alvos = document.querySelectorAll('.visual-box, .hero, .page-hero');
-  if (!alvos.length) return;
   const reduz = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (reduz) return;
 
+  // todo container que tenha uma foto ganha o efeito
+  const alvos = document.querySelectorAll('.visual-box, .hero, .page-hero, .foto-onda, .faixa-foto');
+
   alvos.forEach(el => {
     const foto = el.querySelector('img');
-    if (!foto) return;
+    if (!foto && !el.classList.contains('faixa-foto')) return;
+
+    // o fade padrão mascarava o efeito: desliga nesse elemento
+    el.classList.remove('reveal');
+    el.classList.add('com-mosaico');
+
     const largura = el.offsetWidth || window.innerWidth;
-    const colunas = largura > 900 ? 12 : (largura > 560 ? 8 : 6);
+    const colunas = largura > 900 ? 14 : (largura > 560 ? 9 : 6);
     const m = document.createElement('div');
     m.className = 'mosaico';
+    const meio = (colunas - 1) / 2;
     for (let i = 0; i < colunas; i++){
       const s = document.createElement('span');
-      // ordem alternada do centro para as bordas: encaixe mais orgânico
-      const dist = Math.abs(i - (colunas - 1) / 2);
-      s.style.transitionDelay = (dist * 55 + (i % 2 ? 30 : 0)) + 'ms';
+      s.style.transitionDelay = (Math.abs(i - meio) * 48 + (i % 2 ? 26 : 0)) + 'ms';
       m.appendChild(s);
     }
     el.appendChild(m);
-    foto.classList.add('foto-zoom');
+    if (foto) foto.classList.add('foto-zoom');
     el.__mosaico = m;
   });
 
   const obs = new IntersectionObserver(entradas => {
     entradas.forEach(e => {
-      if (!e.isIntersecting) return;
       const el = e.target;
-      if (el.__mosaico) el.__mosaico.classList.add('aberto');
-      const foto = el.querySelector('img');
-      if (foto) foto.classList.add('pronta');
-      obs.unobserve(el);
+      if (e.isIntersecting){
+        if (el.__mosaico) el.__mosaico.classList.add('aberto');
+        const foto = el.querySelector('img');
+        if (foto) foto.classList.add('pronta');
+        el.__visto = true;
+      } else if (el.__visto && e.boundingClientRect.top > 0){
+        // saiu pela parte de baixo: rearma para tocar de novo ao voltar
+        if (el.__mosaico) el.__mosaico.classList.remove('aberto');
+        const foto = el.querySelector('img');
+        if (foto) foto.classList.remove('pronta');
+        el.__visto = false;
+      }
     });
-  }, { threshold: .2 });
+  }, { threshold: .18, rootMargin: '0px 0px -8% 0px' });
 
-  alvos.forEach(el => obs.observe(el));
+  alvos.forEach(el => { if (el.__mosaico) obs.observe(el); });
 })();
 
 /* Cascata nos cards de cada grade */
-document.querySelectorAll('.grid-cards, .acoes-grid, .valores-grid, .unidades-grid, .contato-grid, .lista-beneficios')
+document.querySelectorAll('.grid-cards, .servicos-cards, .acoes-grid, .valores-grid, .unidades-grid, .contato-grid, .lista-beneficios')
   .forEach(grade => {
     [...grade.children].forEach((filho, i) => {
       if (filho.classList.contains('reveal')) filho.style.transitionDelay = (i * 70) + 'ms';
