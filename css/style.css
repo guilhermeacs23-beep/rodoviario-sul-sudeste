@@ -307,3 +307,55 @@ img{max-width:100%;display:block}
   .visual-box{min-height:280px}
   .visual-box.alto{min-height:320px}
 }
+
+/* ============================================================
+   Ajustes: hero solo, ações duplas, seção azul e revelação
+   ============================================================ */
+
+/* Hero sem o card lateral */
+.hero-grid.solo{grid-template-columns:1fr;max-width:860px}
+.hero-grid.solo h1{font-size:clamp(44px,6.4vw,80px)}
+.hero-grid.solo p.chamada{font-size:18.5px;max-width:660px}
+
+/* Duas ações centralizadas */
+.acoes-grid.duas{grid-template-columns:repeat(2,1fr);max-width:860px;margin:0 auto}
+@media(max-width:900px){.acoes-grid.duas{grid-template-columns:1fr}}
+
+/* Seção com fundo azul */
+.secao.azul{background:linear-gradient(150deg,#06244E 0%,#0A3C7E 60%,#0B4DA2 100%);color:#fff;position:relative;overflow:hidden}
+.secao.azul::after{content:'';position:absolute;right:-8%;top:-30%;width:46%;height:160%;background:repeating-linear-gradient(115deg,rgba(255,255,255,.045) 0 2px,transparent 2px 24px);transform:skewX(-12deg)}
+.secao.azul .container{position:relative;z-index:2}
+.secao.azul .eyebrow{color:var(--ciano-claro)}
+.secao.azul .secao-head h2{color:#fff}
+.secao.azul .secao-head p{color:#C6DCF2}
+.secao.azul .card{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);backdrop-filter:blur(6px)}
+.secao.azul .card h3{color:#fff}
+.secao.azul .card p{color:#C6DCF2}
+.secao.azul .card .ico{background:linear-gradient(135deg,var(--ciano),#0E6FDE);box-shadow:0 8px 22px rgba(0,183,224,.30)}
+.secao.azul .card::before{background:linear-gradient(180deg,var(--ciano-claro),var(--ciano))}
+.secao.azul .card:hover{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.28);box-shadow:0 18px 44px rgba(0,0,0,.28)}
+.secao.azul .btn-azul{background:#fff;color:var(--azul)}
+.secao.azul .btn-azul:hover{background:var(--ciano);color:#04263B}
+
+/* ============ Revelação em colunas (mosaico) ============ */
+.visual-box,.hero,.page-hero{position:relative}
+.mosaico{position:absolute;inset:0;display:flex;pointer-events:none;z-index:2}
+.mosaico span{flex:1 0 0;background:var(--noite);transform:scaleY(1);transition:transform .85s cubic-bezier(.16,1,.3,1)}
+.mosaico span:nth-child(odd){transform-origin:top}
+.mosaico span:nth-child(even){transform-origin:bottom}
+.mosaico.aberto span{transform:scaleY(0)}
+.hero .mosaico span,.page-hero .mosaico span{background:#04203F}
+
+/* Zoom suave da foto ao revelar */
+.foto-zoom{transform:scale(1.10);transition:transform 1.6s cubic-bezier(.16,1,.3,1)}
+.foto-zoom.pronta{transform:scale(1)}
+
+/* Cards entram em cascata */
+.grid-cards .card.reveal,.acoes-grid .acao.reveal,.valores-grid .valor.reveal,
+.unidades-grid .unidade.reveal,.contato-grid .contato-card.reveal{transition:opacity .55s ease,transform .55s cubic-bezier(.16,1,.3,1),box-shadow .25s,border-color .25s,background .25s}
+
+@media (prefers-reduced-motion: reduce){
+  .mosaico{display:none}
+  .foto-zoom{transform:none}
+  .reveal{opacity:1;transform:none}
+}

@@ -62,3 +62,51 @@ document.querySelectorAll('form[data-wpp]').forEach(f => {
     window.open('https://wa.me/' + f.dataset.wpp + '?text=' + txt, '_blank');
   });
 });
+
+/* ===== Revelação das fotos em colunas (mosaico) ===== */
+(function(){
+  const alvos = document.querySelectorAll('.visual-box, .hero, .page-hero');
+  if (!alvos.length) return;
+  const reduz = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduz) return;
+
+  alvos.forEach(el => {
+    const foto = el.querySelector('img');
+    if (!foto) return;
+    const largura = el.offsetWidth || window.innerWidth;
+    const colunas = largura > 900 ? 12 : (largura > 560 ? 8 : 6);
+    const m = document.createElement('div');
+    m.className = 'mosaico';
+    for (let i = 0; i < colunas; i++){
+      const s = document.createElement('span');
+      // ordem alternada do centro para as bordas: encaixe mais orgânico
+      const dist = Math.abs(i - (colunas - 1) / 2);
+      s.style.transitionDelay = (dist * 55 + (i % 2 ? 30 : 0)) + 'ms';
+      m.appendChild(s);
+    }
+    el.appendChild(m);
+    foto.classList.add('foto-zoom');
+    el.__mosaico = m;
+  });
+
+  const obs = new IntersectionObserver(entradas => {
+    entradas.forEach(e => {
+      if (!e.isIntersecting) return;
+      const el = e.target;
+      if (el.__mosaico) el.__mosaico.classList.add('aberto');
+      const foto = el.querySelector('img');
+      if (foto) foto.classList.add('pronta');
+      obs.unobserve(el);
+    });
+  }, { threshold: .2 });
+
+  alvos.forEach(el => obs.observe(el));
+})();
+
+/* Cascata nos cards de cada grade */
+document.querySelectorAll('.grid-cards, .acoes-grid, .valores-grid, .unidades-grid, .contato-grid, .lista-beneficios')
+  .forEach(grade => {
+    [...grade.children].forEach((filho, i) => {
+      if (filho.classList.contains('reveal')) filho.style.transitionDelay = (i * 70) + 'ms';
+    });
+  });
